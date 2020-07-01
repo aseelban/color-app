@@ -3,28 +3,49 @@ import {withStyles} from '@material-ui/styles'
 
 
 const styles = {
-    main : {
-        backgroundColor: '#d7d7d7',
-
-        "& title": {
-            color: "red"
+    root: {
+        background: 'white',
+        borderRadius: '5px',
+        padding: '.5rem',
+        position: "relative",
+        overflow: 'hidden',
+        border: '1px solid #d7d7d7',
+        '&:hover': {
+            cursor: 'pointer'
         }
     },
+    colors: {
+        background: 'grey',
+    },
+    title: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        margin: '0',
+        color: 'black',
+        paddingTop: '0.5rem',
+        fontSize: '1rem',
+        position: 'relative'
+
+    },
+    emoji: {
+        marginLeft: "0.5rem",
+        fontSize: '1.5rem'
+    }
 }
 
 function MiniPaletteList(props) {
 
-    const {classes} = props;
+    const {classes,paletteName,id,emoji} = props;
 
     return (
         <div>
-            <div className={classes.main}>
-                <h1>MiniPaletteList func</h1>
-                <span className={classes.title}>this is span</span>
+            <div className={classes.root}>
+                <div className={classes.colors} />
+                <h4 className={classes.title}>
+                    {paletteName} <span className={classes.emoji}>{emoji}</span>
+                </h4>  
             </div>
-
-
-            <h1>antoher</h1>
         </div>
     )
 }
