@@ -9,7 +9,6 @@ const styles = {
         padding: '.5rem',
         position: "relative",
         overflow: 'hidden',
-        border: '1px solid #d7d7d7',
         '&:hover': {
             cursor: 'pointer'
         }
@@ -36,7 +35,7 @@ const styles = {
 
 function MiniPaletteList(props) {
 
-    const {classes,paletteName,id,emoji} = props;
+    const {classes,paletteName,emoji} = props;
 
     return (
         <div>
