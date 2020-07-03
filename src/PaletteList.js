@@ -35,6 +35,11 @@ const styles = {
 }
 
 class PaletteList extends Component {
+
+    // route to specific link based on the param "id" which is coming from {...palette} (id) props.  
+    linkToPalette = (id) => {
+        this.props.history.push(`/palette/${id}`)
+    }
     render() {
         const {palettes,classes} = this.props;
 
@@ -46,7 +51,10 @@ class PaletteList extends Component {
                     </nav>
                     <div className={classes.palettes}>
                         {palettes.map((palette) => (
-                            <MiniPaletteList {...palette}/> 
+                            <MiniPaletteList 
+                            {...palette}
+                            linkToPalette={() => this.linkToPalette(palette.id)}
+                             /> 
                         ))}
                     </div>
                 </div>
