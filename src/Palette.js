@@ -26,7 +26,7 @@ class Palette extends Component {
         id={color.id}
         paletteId={id}
         url_toSingleColorPalette={`/palette/${id}/${color.id}`}
-        showLink={true}
+        showingFullPalette
       />
     ));
     return (
