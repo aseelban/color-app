@@ -11,9 +11,10 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import Button from "@material-ui/core/Button";
+import { SketchPicker } from "react-color";
 
-
-const drawerWidth = 240;
+const drawerWidth = 400;
 
 const styles = (theme) => ({
   root: {
@@ -108,7 +109,7 @@ class NewPaletteForm extends Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
-              Persistent drawer
+              Choose your palette
             </Typography>
           </Toolbar>
         </AppBar>
@@ -126,14 +127,28 @@ class NewPaletteForm extends Component {
               <ChevronLeftIcon />
             </IconButton>
           </div>
+          {/* create new palette  */}
           <Divider />
-          <Divider />
+          <Typography variant="h4">Desgin your palete</Typography>
+          <div>
+            <Button variant="contained" color="secondary">
+              Clear palette
+            </Button>
+            <Button variant="contained" color="primary">
+              Random color
+            </Button>
+          </div>
+          <SketchPicker
+            color="red"
+            onChangeComplete={(color) => console.log(color)}
+          />
+            <Button variant="contained" color="primary">
+              Save color
+            </Button>
         </Drawer>
-        <main
-          className={classNames(classes.content, {
-            [classes.contentShift]: open,
-          })}
-        ></main>
+        <main className={classes.content}>
+          <div className={classes.drawerHeader} />
+        </main>
       </div>
     );
   }
