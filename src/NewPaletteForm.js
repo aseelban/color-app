@@ -13,6 +13,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import { SketchPicker } from "react-color";
+import { colors } from "@material-ui/core";
 
 const drawerWidth = 400;
 
@@ -76,14 +77,24 @@ const styles = (theme) => ({
 class NewPaletteForm extends Component {
   state = {
     open: false,
+    currentColor: "teal",
+    colors: ["red", "blue", "green", "black"],
   };
 
+  //const {currentColor, colors} = this.state;
+  
   handleDrawerOpen = () => {
     this.setState({ open: true });
   };
 
   handleDrawerClose = () => {
     this.setState({ open: false });
+  };
+  // update the current background color state
+  updateCurrentColor = (color) => this.setState({ currentColor: color.hex });
+  // push new colors to array
+  addColors = () => {
+    this.setState({colors: [...this.state.colors, this.state.currentColor]})
   };
 
   render() {
@@ -140,14 +151,28 @@ class NewPaletteForm extends Component {
           </div>
           <SketchPicker
             color="red"
-            onChangeComplete={(color) => console.log(color)}
+            onChangeComplete={this.updateCurrentColor}
           />
-            <Button variant="contained" color="primary">
-              Save color
-            </Button>
+          <Button
+            variant="contained"
+            style={{ background: this.state.currentColor }}
+            color={this.state.currentColor}
+            onClick={this.addColors}
+          >
+            Save color
+          </Button>
         </Drawer>
-        <main className={classes.content}>
+        <main className={classNames(classes.content, {
+          [classes.contentShift] : open
+        })}>
           <div className={classes.drawerHeader} />
+          
+            <ul>
+              {this.state.colors.map((color) => {
+               return <li style={{background: color}}>{color}</li>
+              })}
+            </ul>
+          
         </main>
       </div>
     );
