@@ -14,6 +14,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
 import { SketchPicker } from "react-color";
 import { colors } from "@material-ui/core";
+import DraggableColorBox from "./DraggableColorBox";
 
 const drawerWidth = 400;
 
@@ -58,6 +59,7 @@ const styles = (theme) => ({
   },
   content: {
     flexGrow: 1,
+    height: 'calc(100vh - 64px)',
     padding: theme.spacing.unit * 3,
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
@@ -78,11 +80,11 @@ class NewPaletteForm extends Component {
   state = {
     open: false,
     currentColor: "teal",
-    colors: ["red", "blue", "green", "black"],
+    colors: ["red", "blue"],
   };
 
   //const {currentColor, colors} = this.state;
-  
+
   handleDrawerOpen = () => {
     this.setState({ open: true });
   };
@@ -94,7 +96,7 @@ class NewPaletteForm extends Component {
   updateCurrentColor = (color) => this.setState({ currentColor: color.hex });
   // push new colors to array
   addColors = () => {
-    this.setState({colors: [...this.state.colors, this.state.currentColor]})
+    this.setState({ colors: [...this.state.colors, this.state.currentColor] });
   };
 
   render() {
@@ -150,7 +152,7 @@ class NewPaletteForm extends Component {
             </Button>
           </div>
           <SketchPicker
-            color="red"
+            color={this.state.currentColor}
             onChangeComplete={this.updateCurrentColor}
           />
           <Button
@@ -162,17 +164,15 @@ class NewPaletteForm extends Component {
             Save color
           </Button>
         </Drawer>
-        <main className={classNames(classes.content, {
-          [classes.contentShift] : open
-        })}>
+        <main
+          className={classNames(classes.content, {
+            [classes.contentShift]: open,
+          })}
+        >
           <div className={classes.drawerHeader} />
-          
-            <ul>
-              {this.state.colors.map((color) => {
-               return <li style={{background: color}}>{color}</li>
-              })}
-            </ul>
-          
+          {this.state.colors.map((color) => {
+            return <DraggableColorBox color={color} />;
+          })}
         </main>
       </div>
     );
