@@ -81,7 +81,7 @@ class NewPaletteForm extends Component {
   state = {
     open: false,
     currentColor: "teal",
-    colors: [{ color: "blue", name: "blue" }],
+    colors: [],
     newColor: "",
   };
 
@@ -94,19 +94,35 @@ class NewPaletteForm extends Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
+
   // update the current background color state
   updateCurrentColor = (color) => this.setState({ currentColor: color.hex });
+
   // push new colors to array
   addColors = () => {
     const newColor = {
       color: this.state.currentColor,
       name: this.state.newColor,
     };
-    this.setState({ colors: [...this.state.colors, newColor], newColor: '' });
+    this.setState({ colors: [...this.state.colors, newColor], newColor: "" });
     console.log(this.state.colors);
   };
+
   handleChange = (event) => {
     this.setState({ newColor: event.target.value });
+  };
+
+  handleSubmit = () => {
+    const newName = 'New test palette';
+    const newPalette = {
+      paletteName: newName,
+      id: newName.toLocaleLowerCase().replace(/ /g, "-"),
+      colors: this.state.colors,
+    };
+    this.props.savePalette(newPalette);
+
+    // redirect to homepage
+    this.props.history.push("/")
   };
 
   componentDidMount() {
@@ -131,6 +147,7 @@ class NewPaletteForm extends Component {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
+          color="default"
           position="fixed"
           className={classNames(classes.appBar, {
             [classes.appBarShift]: open,
@@ -148,6 +165,13 @@ class NewPaletteForm extends Component {
             <Typography variant="h6" color="inherit" noWrap>
               Choose your palette
             </Typography>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleSubmit}
+            >
+              save palette
+            </Button>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -187,8 +211,8 @@ class NewPaletteForm extends Component {
               validators={["required", "isNameUnique", "isColorUnique"]}
               errorMessages={[
                 "Enter a color name",
-                "Color name must be unique.",
-                "Color is alredy used.",
+                "Color name must be unique",
+                "Color is alredy used",
               ]}
             />
             <Button

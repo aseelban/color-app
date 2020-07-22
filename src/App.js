@@ -9,7 +9,16 @@ import NewPaletteForm from "./NewPaletteForm";
 
 class App extends Component {
   // find a palette with a same id name
-  findPalette = (id) => seedColors.find((palette) => palette.id === id);
+  state = {
+    palettes: seedColors
+  }
+
+
+  findPalette = (id) => this.state.palettes.find((palette) => palette.id === id);
+
+  savePalette = (newPalette) => {
+    this.setState({palettes: [...this.state.palettes, newPalette]})
+  }
 
   render() {
     return (
@@ -17,13 +26,13 @@ class App extends Component {
         <Route
           exact
           path="/palette/new"
-          render={(palette) => <NewPaletteForm {...palette} />}
+          render={(palette) => <NewPaletteForm {...palette} savePalette={this.savePalette} {...palette}/>}
         />
         <Route
           exact
           path="/"
           render={(palette) => (
-            <PaletteList palettes={seedColors} {...palette} />
+            <PaletteList palettes={this.state.palettes} {...palette} />
           )}
         />
         <Route
