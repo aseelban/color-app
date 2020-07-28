@@ -8,7 +8,8 @@ import SingleColorPalette from "./SingleColorPalette";
 import NewPaletteForm from "./NewPaletteForm";
 
 class App extends Component {
-  // find a palette with a same id name
+  
+  // palettes contains all default palettes & all the new
   state = {
     palettes: seedColors
   }
@@ -17,7 +18,9 @@ class App extends Component {
   findPalette = (id) => this.state.palettes.find((palette) => palette.id === id);
 
   savePalette = (newPalette) => {
+    //push the new palettes to the state
     this.setState({palettes: [...this.state.palettes, newPalette]})
+    console.log(newPalette)
   }
 
   render() {
@@ -26,7 +29,7 @@ class App extends Component {
         <Route
           exact
           path="/palette/new"
-          render={(palette) => <NewPaletteForm {...palette} savePalette={this.savePalette} {...palette}/>}
+          render={(palette) => <NewPaletteForm palettes={this.state.palettes} savePalette={this.savePalette} {...palette}/>}
         />
         <Route
           exact
