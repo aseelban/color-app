@@ -16,6 +16,8 @@ import { SketchPicker } from "react-color";
 import { colors } from "@material-ui/core";
 import DraggableColorBox from "./DraggableColorBox";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import DraggableColorList from "./DraggableColorList";
+import {arrayMove} from 'react-sortable-hoc'
 
 const drawerWidth = 400;
 
@@ -159,6 +161,14 @@ class NewPaletteForm extends Component {
       colors: this.state.colors.filter((color) => color.name !== colorName),
     });
   };
+
+  // change color index after Draggable done, for example if user move color x to color b index, then save the index value to state
+  onSortEnd = ({ oldIndex, newIndex }) => {
+    this.setState(({ colors }) => ({
+      colors: arrayMove(colors, oldIndex, newIndex),
+    }));
+  };
+
   render() {
     const { classes, theme } = this.props;
     const { open } = this.state;
@@ -259,16 +269,12 @@ class NewPaletteForm extends Component {
           })}
         >
           <div className={classes.drawerHeader} />
-          {this.state.colors.map((color) => {
-            return (
-              <DraggableColorBox
-              key={color.name}
-              color={color.color}
-              name={color.name}
-              handleClick={() => this.removeColor(color.name)}
-              />
-            );
-          })}
+          <DraggableColorList
+            colors={this.state.colors}
+            removeColor={this.removeColor}
+            axis={"xy"}
+            onSortEnd={this.onSortEnd}
+          />
         </main>
       </div>
     );
