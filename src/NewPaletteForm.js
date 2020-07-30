@@ -13,6 +13,7 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import DraggableColorList from "./DraggableColorList";
 import { arrayMove } from "react-sortable-hoc";
 import PaletteFormNav from "./PaletteFormNav";
+import ColorPickerForm from "./ColorPickerForm";
 
 const drawerWidth = 400;
 
@@ -81,27 +82,10 @@ class NewPaletteForm extends Component {
 
   state = {
     open: true,
-    currentColor: "teal",
-    newColorName: "",
     colors: this.props.palettes[0].colors,
     newPaletteName: "",
   };
 
-  componentDidMount() {
-    // ____________________
-    // validate inputs data
-    // ____________________
-
-    ValidatorForm.addValidationRule("isColorNameUnique", (value) =>
-      this.state.colors.every(
-        ({ name }) => name.toLowerCase() !== value.toLowerCase()
-      )
-    );
-
-    ValidatorForm.addValidationRule("isColorUnique", (value) =>
-      this.state.colors.every(({ color }) => color !== this.state.currentColor)
-    );
-  }
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -115,17 +99,11 @@ class NewPaletteForm extends Component {
   updateCurrentColor = (color) => this.setState({ currentColor: color.hex });
 
   // push new colors to array
-  addNewColor = () => {
-    const newColor = {
-      color: this.state.currentColor,
-      name: this.state.newColorName,
-    };
+  addNewColor = (newColor) => {
     this.setState({
       colors: [...this.state.colors, newColor],
-      newColorName: "",
-      currentColor: "",
     });
-  };
+  }
 
   handleChange = (evt) => {
     this.setState({
@@ -172,8 +150,16 @@ class NewPaletteForm extends Component {
   // pick random color from existing palettes
   randomColor = () => {
     const allColors = this.props.palettes.map((p) => p.colors).flat();
-    let rand = Math.floor(Math.random() * allColors.length);
-    let randomColor = allColors[rand];
+    let rand;
+    let randomColor;
+    let isDuplicateColor = true;
+    while (isDuplicateColor) {
+      rand = Math.floor(Math.random() * allColors.length);
+      randomColor = allColors[rand];
+      isDuplicateColor = this.state.colors.some(
+        (color) => color.name === randomColor.name
+      );
+    }
 
     this.setState({ colors: [...this.state.colors, randomColor] });
   };
@@ -228,35 +214,12 @@ class NewPaletteForm extends Component {
               Random color
             </Button>
           </div>
-          <SketchPicker
-            color={this.state.currentColor}
-            onChangeComplete={this.updateCurrentColor}
+
+          <ColorPickerForm
+            paletteIsFull={paletteIsFull}
+            addNewColor={this.addNewColor}
+            colors={colors}
           />
-          {/* validate 2 input color name & code , it check for the color state to make sure it has unique values */}
-          <ValidatorForm onSubmit={this.addNewColor}>
-            <TextValidator
-              onChange={this.handleChange}
-              value={this.state.newColorName}
-              name="newColorName"
-              validators={["required", "isColorNameUnique", "isColorUnique"]}
-              errorMessages={[
-                "Enter a color name",
-                "Color name must be unique",
-                "Color is alredy used",
-              ]}
-            />
-            <Button
-              variant="contained"
-              style={{
-                background: paletteIsFull ? "#E0E0E0" : this.state.currentColor,
-              }}
-              color={this.state.currentColor}
-              type={"submit"}
-              disabled={paletteIsFull}
-            >
-              {paletteIsFull ? "Palette full!" : "Add color"}
-            </Button>
-          </ValidatorForm>
         </Drawer>
         <main
           className={classNames(classes.content, {
