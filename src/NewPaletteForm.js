@@ -48,6 +48,10 @@ const styles = (theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    display: "flex",
+    // flexDirection: "column",
+    // justifyContent: "center",
+    alignItems: "center",
   },
   drawerHeader: {
     display: "flex",
@@ -73,6 +77,13 @@ const styles = (theme) => ({
     }),
     marginLeft: 0,
   },
+  buttons: {
+    width: "100%"
+  },
+  button: {
+    width: "50%",
+
+  }
 });
 
 class NewPaletteForm extends Component {
@@ -175,7 +186,6 @@ class NewPaletteForm extends Component {
       <div className={classes.root}>
         <PaletteFormNav
           open={open}
-          classes={classes}
           palettes={palettes}
           handleSubmit={this.handleSubmit}
           handleDrawerOpen={this.handleDrawerOpen}
@@ -196,13 +206,14 @@ class NewPaletteForm extends Component {
           </div>
           {/* create new palette  */}
           <Divider />
-          <Typography variant="h4">Desgin your palete</Typography>
-          <div>
+          <Typography variant="h4" gutterBottom>Desgin your palete</Typography>
+          <div className={classes.buttons}>
             <Button
               variant="contained"
               color="secondary"
               onClick={this.clearPalette}
-            >
+              className={classes.button}
+              >
               Clear palette
             </Button>
             <Button
@@ -210,6 +221,7 @@ class NewPaletteForm extends Component {
               color="primary"
               onClick={this.randomColor}
               disabled={paletteIsFull}
+              className={classes.button}
             >
               Random color
             </Button>
