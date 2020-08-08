@@ -5,7 +5,7 @@ import chroma from "chroma-js";
 // change the text color to light if a palette color is dark
 //- chroma(background).luminance() >= 0.7;
 
-export default {
+const styles = {
   ColorBox: {
     width: "20%",
     height: (props) => (props.showingFullPalette ? "25%" : "50%"), // change the color box height on Palette and singleColorPalette based on showingFullPalette bolean values, on singlePalette is False.
@@ -128,3 +128,4 @@ export default {
     transitionDelay: "0.3s",
   },
 };
+export default styles;

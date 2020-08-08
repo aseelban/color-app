@@ -1,4 +1,4 @@
-export default {
+const styles = {
     PaletteFooter: {
         height: '5vh',
         display: 'flex',
@@ -12,3 +12,5 @@ export default {
       }
       
 }
+
+export default styles;

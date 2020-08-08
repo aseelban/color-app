@@ -1,4 +1,4 @@
-export default {
+const styles = {
     root: {
         background: "blue",
         height: "100vh",
@@ -32,3 +32,5 @@ export default {
         gridGap: "5%",
       },
 }
+
+export default styles;
