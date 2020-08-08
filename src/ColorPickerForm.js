@@ -6,10 +6,10 @@ import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles/ColorPickerFormStyles";
 
 class ColorPickerForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { currentColor: "teal", newColorName: "" };
-  }
+
+  state = { currentColor: "teal", newColorName: "" };
+  
+
   componentDidMount() {
     ValidatorForm.addValidationRule("isColorNameUnique", value =>
       this.props.colors.every(

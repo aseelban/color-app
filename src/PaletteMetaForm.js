@@ -10,16 +10,12 @@ import { Picker } from "emoji-mart";
 import "emoji-mart/css/emoji-mart.css";
 
 class PaletteMetaForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+  state = {
       stage: "form",
       newPaletteName: ""
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.showEmojiPicker = this.showEmojiPicker.bind(this);
-    this.savePalette = this.savePalette.bind(this);
-  }
+
+  
   componentDidMount() {
     ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
       this.props.palettes.every(
@@ -27,15 +23,15 @@ class PaletteMetaForm extends Component {
       )
     );
   }
-  handleChange(evt) {
+  handleChange = (evt) => {
     this.setState({
       [evt.target.name]: evt.target.value
     });
   }
-  showEmojiPicker() {
+  showEmojiPicker = () => {
     this.setState({ stage: "emoji" });
   }
-  savePalette(emoji) {
+  savePalette = (emoji) => {
     const newPalette = {
       paletteName: this.state.newPaletteName,
       emoji: emoji.native
