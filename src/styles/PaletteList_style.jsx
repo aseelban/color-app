@@ -1,3 +1,5 @@
+import breakpoints from './breakpoints'
+
 const styles = {
     root: {
         background: "blue",
@@ -12,6 +14,13 @@ const styles = {
         alignItems: "flex-start",
         flexDirection: "column",
         flexWrap: "wrap",
+        flexWrap: "wrap",
+        [breakpoints.down("xl")]: {
+          width: "75%"
+        },
+        [breakpoints.down("xs")]: {
+          width: "70%"
+        }
       },
       nav: {
         display: "flex",
@@ -29,7 +38,14 @@ const styles = {
         width: "100%",
         display: "grid",
         gridTemplateColumns: "repeat(3,30%)",
-        gridGap: "5%",
+        gridGap: "2.5rem",
+        [breakpoints.down("md")]: {
+          gridTemplateColumns: "repeat(2, 50%)"
+        },
+        [breakpoints.down("xs")]: {
+          gridTemplateColumns: "repeat(1, 100%)",
+          gridGap: "1rem"
+        }
       },
 }
 
