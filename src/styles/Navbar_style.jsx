@@ -1,3 +1,5 @@
+import breakpoints from './breakpoints'
+
 const styles= {
   Navbar: {
     display: "flex",
@@ -6,9 +8,9 @@ const styles= {
     height: "6vh",
   },
   logo: {
-    marginRight: 15,
+    marginRight: "15px",
     padding: "0 13px",
-    fontSize: 22,
+    fontSize: "22px",
     backgroundColor: "#eceff1",
     fontFamily: "Roboto",
     height: "100%",
@@ -18,27 +20,33 @@ const styles= {
       textDecoration: "none",
       color: "black",
     },
+    [breakpoints.down("xs")]: {
+      display: "none"
+    }
   },
   slider: {
-    width: 340,
+    width: "340px",
     margin: "0 10px",
     display: "inline-block",
     "& .rc-slider-track": {
       backgroundColor: "transparent",
     },
     "& .rc-slider-rail": {
-      height: 8,
+      height: "8px",
     },
     "& .rc-slider-handle, .rc-slider-handle:active,.rc-slider-handle:focus,.rc-slider-handle:hover": {
       backgroundColor: "green",
       outline: "none",
       border: "2px solid green",
       boxShadow: "none",
-      width: 13,
-      height: 13,
+      width: "13px",
+      height: "13px",
       marginLeft: "-7px",
       marginTop: "-3px",
     },
+    [breakpoints.down("sm")]: {
+      width: "150px"
+    }
   },
   selectContainer: {
     marginLeft: "auto",
