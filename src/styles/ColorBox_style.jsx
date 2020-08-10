@@ -1,4 +1,5 @@
 import chroma from "chroma-js";
+import breakpoints from './breakpoints'
 // change the text color to dark if a palette color is light
 //- chroma(background).luminance() <= 0.08;
 
@@ -18,6 +19,18 @@ const styles = {
       opacity: "1",
       transition: "0.5s",
     },
+    [breakpoints.down("lg")]: {
+      width: "25%",
+      height: props => (props.showingFullPalette ? "20%" : "50%")
+    },
+    [breakpoints.down("md")]: {
+      width: "50%",
+      height: props => (props.showingFullPalette ? "10%" : "50%")
+    },
+    [breakpoints.down("xs")]: {
+      width: "100%",
+      height: props => (props.showingFullPalette ? "5%" : "10%")
+    }
   },
   copyText: {
     color: (props) =>
@@ -127,5 +140,6 @@ const styles = {
     transition: "all 0.4s ease-in-out",
     transitionDelay: "0.3s",
   },
+
 };
 export default styles;
