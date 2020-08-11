@@ -1,11 +1,9 @@
 import React, { Component } from "react";
 import MiniPaletteList from "./MiniPaletteList";
 import { withStyles } from "@material-ui/styles";
-import styles from './styles/PaletteList_style'
-import { Link } from 'react-router-dom'
-
-
-
+import styles from "./styles/PaletteList_style";
+import { Link } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 class PaletteList extends Component {
   // route to specific link based on the param "id" which is coming from {...palette} (id) props.
@@ -13,7 +11,7 @@ class PaletteList extends Component {
     this.props.history.push(`/palette/${id}`);
   };
   render() {
-    const { palettes, classes,deletePalete } = this.props;
+    const { palettes, classes, deletePalete } = this.props;
 
     return (
       <div className={classes.root}>
@@ -22,17 +20,19 @@ class PaletteList extends Component {
             <h1 className={classes.logo}>React color</h1>
             <Link to="/palette/new">New Palette</Link>
           </nav>
-          <div className={classes.palettes}>
+          <TransitionGroup className={classes.palettes}>
             {palettes.map((palette) => (
-              <MiniPaletteList
-                {...palette}
-                linkToPalette={() => this.linkToPalette(palette.id)}
-                handleDelete={deletePalete}
-                key={palette.id}
-                id={palette.id}
-              />
+              <CSSTransition key={palette.id} classNames="fade" timeout={500}>
+                <MiniPaletteList
+                  {...palette}
+                  linkToPalette={() => this.linkToPalette(palette.id)}
+                  handleDelete={deletePalete}
+                  key={palette.id}
+                  id={palette.id}
+                />
+              </CSSTransition>
             ))}
-          </div>
+          </TransitionGroup>
         </div>
       </div>
     );
