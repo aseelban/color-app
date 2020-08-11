@@ -36,7 +36,7 @@ class App extends Component {
   }
 
   //delete palette
-  deletePalete = (id) => {
+  deletePalette = (id) => {
     const { palettes } = this.state;
 
     this.setState(
@@ -67,7 +67,7 @@ class App extends Component {
           render={(palette) => (
             <PaletteList
               palettes={this.state.palettes}
-              deletePalete={this.deletePalete}
+              deletePalette={this.deletePalette}
               {...palette}
             />
           )}

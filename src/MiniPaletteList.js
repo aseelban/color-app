@@ -12,13 +12,13 @@ function MiniPaletteList(props) {
     linkToPalette,
     id,
     handleDelete,
+    openDialog
   } = props;
 
   const deletePalette = (e) => {
     e.stopPropagation();
-    //handleDelete: function to delete palette on home page, function delared on app then pass to -paletteList then used here as props.
-    // id : each palette has in id, to delete one u must provide that id.
-    handleDelete(id);
+    
+    openDialog(id);
   };
 
   const miniColorBox = colors.map((color) => {
