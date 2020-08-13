@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { ChromePicker } from "react-color";
 import { withStyles } from "@material-ui/core/styles";
-import styles from "./styles/ColorPickerForm_style";
+import styles from "../styles/ColorPickerFormStyle";
 
 class ColorPickerForm extends Component {
 

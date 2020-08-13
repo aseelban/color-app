@@ -1,7 +1,7 @@
 import React from "react";
 import { withStyles } from "@material-ui/styles";
 import DeleteIcon from "@material-ui/icons/Delete";
-import styles from "./styles/MiniPaletteList_style";
+import styles from "../styles/MiniPaletteListStyle";
 
 const MiniPaletteList = React.memo((props) => {
   console.log(props);

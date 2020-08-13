@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import ColorLensIcon from "@material-ui/icons/ColorLens";
 import Button from "@material-ui/core/Button";
-import styles from "./styles/PaletteFormNavStyles";
+import styles from "../styles/PaletteFormNavStyles";
 
 class PaletteFormNav extends Component {
   state = { newPaletteName: "", formShowing: false };
