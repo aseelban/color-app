@@ -5,10 +5,9 @@ import { withStyles } from "@material-ui/styles";
 import styles from "../styles/ColorBoxStyle";
 
 class ColorBox extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { copied: false };
-  }
+
+    state = { copied: false };
+  
   changeCopyState = () => {
     this.setState({ copied: true }, () => {
       setTimeout(() => this.setState({ copied: false }), 1500);

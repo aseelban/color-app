@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import Palette from "./component/Palette";
+import Palette from "./components/Palette";
 import seedColors from "./helper/seedColors";
-import PaletteList from "./component/PaletteList";
+import PaletteList from "./components/PaletteList";
 import { generatePalette } from "./helper/colorHelpers";
 import { Route, Switch } from "react-router-dom";
-import SingleColorPalette from "./component/SingleColorPalette";
-import NewPaletteForm from "./component/NewPaletteForm";
+import SingleColorPalette from "./components/SingleColorPalette";
+import NewPaletteForm from "./components/NewPaletteForm";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import Page from './component/Page'
+import Page from "./components/Page";
 
 class App extends Component {
   constructor(props) {
@@ -26,7 +26,6 @@ class App extends Component {
       { palettes: [...this.state.palettes, newPalette] },
       this.syncLocalStorage
     );
-    console.log(newPalette);
   };
 
   //save palettes to local storage
@@ -108,6 +107,17 @@ class App extends Component {
                           this.findPalette(RouteProps.match.params.paletteId)
                         )}
                         colorId={RouteProps.match.params.colorId}
+                      />
+                    </Page>
+                  )}
+                />
+                <Route
+                  render={(palette) => (
+                    <Page>
+                      <PaletteList
+                        palettes={this.state.palettes}
+                        deletePalette={this.deletePalette}
+                        {...palette}
                       />
                     </Page>
                   )}

@@ -4,7 +4,6 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import styles from "../styles/MiniPaletteListStyle";
 
 const MiniPaletteList = React.memo((props) => {
-  console.log(props);
   const {
     classes,
     paletteName,

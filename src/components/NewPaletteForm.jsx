@@ -8,15 +8,12 @@ import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Button from "@material-ui/core/Button";
-import { SketchPicker } from "react-color";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import DraggableColorList from "./DraggableColorList";
 import { arrayMove } from "react-sortable-hoc";
 import PaletteFormNav from "./PaletteFormNav";
 import ColorPickerForm from "./ColorPickerForm";
-import styles from '../styles/NewPaletteFormStyle'
-
-
+import styles from "../styles/NewPaletteFormStyle";
+import seedColors from "../helper/seedColors";
 
 class NewPaletteForm extends Component {
   static defaultProps = {
@@ -25,10 +22,9 @@ class NewPaletteForm extends Component {
 
   state = {
     open: true,
-    colors: this.props.palettes[0].colors,
+    colors: seedColors[0].colors,
     newPaletteName: "",
   };
-
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -46,7 +42,7 @@ class NewPaletteForm extends Component {
     this.setState({
       colors: [...this.state.colors, newColor],
     });
-  }
+  };
 
   handleChange = (evt) => {
     this.setState({
@@ -55,7 +51,7 @@ class NewPaletteForm extends Component {
   };
 
   handleSubmit = (newPalette) => {
-    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");  // get a paletteName data and replace a space to (-).
+    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-"); // get a paletteName data and replace a space to (-).
     newPalette.colors = this.state.colors;
 
     // pass newPalette to props as parameter
@@ -87,7 +83,10 @@ class NewPaletteForm extends Component {
 
   // pick random color from existing palettes
   randomColor = () => {
-    const allColors = this.props.palettes.map((p) => p.colors).flat();
+    const allColors =
+      this.props.palettes.length === 0
+        ? seedColors.map((p) => p.colors).flat()
+        : this.props.palettes.map((p) => p.colors).flat();
     let rand;
     let randomColor;
     let isDuplicateColor = true;
@@ -98,6 +97,8 @@ class NewPaletteForm extends Component {
         (color) => color.name === randomColor.name
       );
     }
+    console.log(randomColor);
+    console.log(this.state.colors);
 
     this.setState({ colors: [...this.state.colors, randomColor] });
   };
@@ -133,14 +134,16 @@ class NewPaletteForm extends Component {
           </div>
           {/* create new palette  */}
           <Divider />
-          <Typography variant="h4" gutterBottom>Desgin your palete</Typography>
+          <Typography variant="h4" gutterBottom>
+            Desgin your palete
+          </Typography>
           <div className={classes.buttons}>
             <Button
               variant="contained"
               color="secondary"
               onClick={this.clearPalette}
               className={classes.button}
-              >
+            >
               Clear palette
             </Button>
             <Button

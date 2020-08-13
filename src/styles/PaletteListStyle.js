@@ -32,7 +32,6 @@ const styles = {
     alignItems: "flex-start",
     flexDirection: "column",
     flexWrap: "wrap",
-    flexWrap: "wrap",
     [breakpoints.down("xl")]: {
       width: "75%",
     },

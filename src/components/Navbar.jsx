@@ -8,15 +8,11 @@ import CloseIcon from "@material-ui/icons/Close";
 import { Link } from "react-router-dom";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import styles from '../styles/NavbarStyle'
-
-
+import styles from "../styles/NavbarStyle";
 
 class Navbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { format: "hex", open: false };
-  }
+  state = { format: "hex", open: false };
+
   handleFormatChange = (e) => {
     this.setState({ format: e.target.value, open: true });
     this.props.handleChange(e.target.value);
