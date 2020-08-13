@@ -3,6 +3,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     textAlign: "center",
+    alignItems: 'center',
   },
   picker: {
     width: "17rem !important",

@@ -97,8 +97,6 @@ class NewPaletteForm extends Component {
         (color) => color.name === randomColor.name
       );
     }
-    console.log(randomColor);
-    console.log(this.state.colors);
 
     this.setState({ colors: [...this.state.colors, randomColor] });
   };
