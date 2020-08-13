@@ -9,7 +9,6 @@ const styles = {
     marginTop: "2rem",
   },
   addColor: {
-    width: "100%",
     padding: 0,
     fontSize: "1.3rem",
     margin: 0,
