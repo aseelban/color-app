@@ -1,3 +1,5 @@
+import breakpoints from "./breakpoints";
+
 const styles = {
     PaletteFooter: {
         height: '5vh',
@@ -5,6 +7,9 @@ const styles = {
         justifyContent: 'flex-end',
         alignItems: 'center',
         fontWeight: 'bold',
+        [breakpoints.down("xs")]: {
+          display: "none"
+        },
       },
       PaletteEmoji: {
         fontSize: '1.5rem',

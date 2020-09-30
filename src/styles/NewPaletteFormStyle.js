@@ -1,4 +1,5 @@
 import { DRAWER_WIDTH } from "../helper/constants";
+import breakpoints from "./breakpoints";
 
 const drawerWidth = DRAWER_WIDTH;
 
@@ -37,6 +38,9 @@ const styles = (theme) => ({
     // flexDirection: "column",
     // justifyContent: "center",
     alignItems: "center",
+    [breakpoints.down("xs")]: {
+      width: "100vw",
+    },
   },
   drawerHeader: {
     display: "flex",
@@ -44,7 +48,12 @@ const styles = (theme) => ({
     padding: "0 8px",
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
-    width: '100%',
+    width: "100%",
+  },
+  title: {
+    [breakpoints.down("xs")]: {
+      fontSize: "1.5rem",
+    },
   },
   content: {
     flexGrow: 1,
@@ -55,6 +64,9 @@ const styles = (theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     marginLeft: -drawerWidth,
+    [breakpoints.down("xs")]: {
+      height: "calc(100vh - 25px)",
+    },
   },
   contentShift: {
     transition: theme.transitions.create("margin", {
@@ -65,9 +77,17 @@ const styles = (theme) => ({
   },
   buttons: {
     width: "100%",
+    [breakpoints.down("xs")]: {
+      textAlign: "center",
+    },
   },
   button: {
     width: "50%",
+    [breakpoints.down("xs")]: {
+      width: "45%",
+      margin: "0 3px",
+      fontSize: "0.8rem"
+    },
   },
 });
 

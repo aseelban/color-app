@@ -2,14 +2,19 @@ import breakpoints from "./breakpoints";
 import bg from "./bg.svg";
 
 const styles = {
-  "@global": {
-    ".fade-exit": {
-      opacity: 1
+  container: {
+    width: "50%",
+    display: "flex",
+    alignItems: "flex-start",
+    flexDirection: "column",
+    flexWrap: "wrap",
+    [breakpoints.down("xl")]: {
+      width: "75%",
     },
-    ".fade-exit-active": {
-      opacity: 0,
-      transition: "opacity 500ms ease-out"
-    }
+    [breakpoints.down("xs")]: {
+      width: "70%",
+    },
+    marginBottom: "2rem",
   },
   root: {
     background: "blue",
@@ -23,22 +28,33 @@ const styles = {
     backgroundAttachment: "fixed",
     overflowY: "scroll",
   },
-  logo: {
-    fontSize: "2rem"
+  "@global": {
+    ".fade-exit": {
+      opacity: 1,
+    },
+    ".fade-exit-active": {
+      opacity: 0,
+      transition: "opacity 500ms ease-out",
+    },
   },
-  container: {
-    width: "50%",
-    display: "flex",
-    alignItems: "flex-start",
-    flexDirection: "column",
-    flexWrap: "wrap",
-    [breakpoints.down("xl")]: {
-      width: "75%",
-    },
+  generatorLink: {
+    height: 46,
+    padding: "0 21px",
+    fontSize: 15,
+    background: "#7355d2",
+    lineHeight: "45px",
+    borderRadius: 10,
+    color: "#fff",
+    fontSize: "1rem",
+    fontWeight: "bold",
+    textDecoration: "none",
     [breakpoints.down("xs")]: {
-      width: "70%",
+      padding: "0 8px",
+      fontSize: 12,
+      fontWeight: 600,
+      lineHeight: "40px",
+      height: "100%",
     },
-    marginBottom: "2rem"
   },
   nav: {
     display: "flex",
@@ -46,11 +62,11 @@ const styles = {
     justifyContent: "space-between",
     color: "white",
     alignItems: "center",
-    "& a": {
-      color: "#fff",
-      textDecoration: "none",
-      fontWeight: 'bold',
-      fontSize: '1rem',
+    "& img": {
+      width: 150,
+      [breakpoints.down("xs")]: {
+        width: '100px'
+      },
     },
   },
   palettes: {

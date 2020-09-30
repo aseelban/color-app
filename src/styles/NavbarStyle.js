@@ -1,17 +1,30 @@
-import breakpoints from './breakpoints'
+import breakpoints from "./breakpoints";
 
-const styles= {
+const styles = {
   Navbar: {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-start",
-    height: "6vh",
+    height: "11vh",
+    [breakpoints.down("xs")]: {
+      height: '9vh',
+      margin: '-8px 0 4rem 0',
+      padding: 0,
+      textAlign: 'center',
+    },
+    "& span": {
+      marginLeft: 5,
+    },
+
+    [breakpoints.down("vs")]: {
+      height: "12vh",
+    },
   },
   logo: {
     marginRight: "15px",
     padding: "0 13px",
     fontSize: "22px",
-    backgroundColor: "#eceff1",
+    backgroundColor: "#555453",
     fontFamily: "Roboto",
     height: "100%",
     display: "flex",
@@ -20,9 +33,21 @@ const styles= {
       textDecoration: "none",
       color: "black",
     },
+    "& img": {
+      width: 80,
+      [breakpoints.down("vs")]: {
+        marginTop: '13px'
+      },
+      [breakpoints.down("xs")]: {
+        marginTop: '9px'
+      },
+    },
+
+  },
+  level: {
     [breakpoints.down("xs")]: {
-      display: "none"
-    }
+      marginTop: "0.5rem !important",
+    },
   },
   slider: {
     width: "340px",
@@ -45,12 +70,12 @@ const styles= {
       marginTop: "-3px",
     },
     [breakpoints.down("sm")]: {
-      width: "150px"
-    }
+      width: "150px",
+    },
   },
   selectContainer: {
     marginLeft: "auto",
-    marginRight: "1rem",
+    marginRight: 5,
   },
 };
 export default styles;

@@ -1,5 +1,5 @@
 import chroma from "chroma-js";
-import breakpoints from './breakpoints'
+import breakpoints from "./breakpoints";
 // change the text color to dark if a palette color is light
 //- chroma(background).luminance() <= 0.08;
 
@@ -14,23 +14,24 @@ const styles = {
     display: "inline-block",
     position: "relative",
     cursor: "pointer",
-    marginBottom: "-3.5px",
+    marginBottom: "-4px",
     "&:hover button": {
       opacity: "1",
       transition: "0.5s",
     },
     [breakpoints.down("lg")]: {
       width: "25%",
-      height: props => (props.showingFullPalette ? "20%" : "33.3333%")
+      height: (props) => (props.showingFullPalette ? "20%" : "33.3333%"),
     },
     [breakpoints.down("md")]: {
       width: "50%",
-      height: props => (props.showingFullPalette ? "10%" : "20%")
+      height: (props) => (props.showingFullPalette ? "10%" : "20%"),
     },
     [breakpoints.down("xs")]: {
       width: "100%",
-      height: props => (props.showingFullPalette ? "5%" : "10%")
-    }
+      height: (props) => (props.showingFullPalette ? "5%" : "10%"),
+    },
+
   },
   copyText: {
     color: (props) =>
@@ -55,6 +56,13 @@ const styles = {
     textAlign: "center",
     lineHeight: "30px",
     textTransform: "uppercase",
+
+    [breakpoints.down("xs")]: {
+      width: 50,
+      height: 24,
+      lineHeight: "24px",
+      fontSize: 12,
+    },
   },
   copyButton: {
     color: (props) =>
@@ -78,6 +86,16 @@ const styles = {
     border: "none",
     textDecoration: "none",
     opacity: "0",
+
+    [breakpoints.down("xs")]: {
+      left: "55%",
+      width: 80,
+      height: 30,
+      fontSize: 15,
+      marginTop: "-12px",
+      lineHeight: "12px",
+      marginLeft: "-40px",
+    },
   },
   boxContent: {
     position: "absolute",
@@ -89,6 +107,11 @@ const styles = {
     letterSpacing: 1,
     textTransform: "uppercase",
     fontSize: 12,
+    [breakpoints.down("xs")]: {
+      padding: "0 0.3rem",
+      fontSize: 12,
+      marginBottom: "0.4rem",
+    },
   },
   copyOverlay: {
     opacity: 0,
@@ -133,8 +156,8 @@ const styles = {
       fontWeight: 100,
     },
     [breakpoints.down("xs")]: {
-      fontSize: "3rem"
-    }
+      fontSize: "3rem",
+    },
   },
   showMsg: {
     opacity: 1,
@@ -143,6 +166,5 @@ const styles = {
     transition: "all 0.4s ease-in-out",
     transitionDelay: "0.3s",
   },
-
 };
 export default styles;

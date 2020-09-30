@@ -15,6 +15,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import blue from "@material-ui/core/colors/blue";
 import red from "@material-ui/core/colors/red";
+import logo from '../img/logo.png'
+
 
 class PaletteList extends Component {
   state = {
@@ -46,8 +48,9 @@ class PaletteList extends Component {
       <div className={classes.root}>
         <div className={classes.container}>
           <nav className={classes.nav}>
-            <h1 className={classes.logo}>React color</h1>
-            <Link to="/palette/new">New Palette</Link>
+            {/* <h1 className={classes.logo}>React color</h1> */}
+            <img src={logo} />
+            <Link className={classes.generatorLink} to="/palette/new">Start the generator!</Link>
           </nav>
           <TransitionGroup className={classes.palettes}>
             {palettes.map((palette) => (
