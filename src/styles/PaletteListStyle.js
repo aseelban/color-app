@@ -49,8 +49,8 @@ const styles = {
     fontWeight: "bold",
     textDecoration: "none",
     [breakpoints.down("xs")]: {
-      padding: "0 8px",
-      fontSize: 12,
+      padding: "0 7px",
+      fontSize: 11,
       fontWeight: 600,
       lineHeight: "40px",
       height: "100%",
